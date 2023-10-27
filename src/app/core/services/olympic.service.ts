@@ -17,9 +17,9 @@ export class OlympicService {
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error: HttpErrorResponse, caught) => {
-        // TODO: improve error handling
-        console.error(error);
+        // TODO: improve error handling -> Return on an error page with routing (delete file to test)
         // can be useful to end loading state and let the user know something went wrong
+        console.error(error);
         this.olympics$.next(undefined);
         return caught;
       })
