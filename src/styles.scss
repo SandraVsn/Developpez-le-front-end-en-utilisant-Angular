@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "primeng/resources/themes/lara-light-teal/theme.css";
+@import "primeng/resources/primeng.css";
+
+@layer components {
+  .title-card {
+    @apply rounded-lg bg-teal-600 p-2 text-white text-xl sm:text-2xl m-4;
+  }
+  .info-card {
+    @apply flex flex-col items-center border-2 rounded-lg p-2 border-teal-600 m-2;
+  }
+  .info-title {
+    @apply text-gray-500 font-light;
+  }
+}
