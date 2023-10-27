@@ -1,4 +1,22 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
-<p>{{ numberOfCountries }}</p>
+<h2
+  class="border-b-2 p-3 text-2xl border-teal-600 mb-4 sm:text-4xl sm:border-b-4 font-light"
+>
+  Olympic games app
+</h2>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+  <div class="mx-auto max-w-3xl flex flex-col items-center">
+    <div class="title-card">Medals per Country</div>
+    <div class="flex">
+      <div class="info-card">
+        <p class="info-title">Number of JOs</p>
+        <p class="font-bold">{{ numberOfCountries }}</p>
+      </div>
+      <div class="info-card">
+        <p class="info-title">Number of Countries</p>
+        <p class="font-bold">{{ numberOfCountries }}</p>
+      </div>
+    </div>
+    <p>{{ (olympics$ | async)?.length }} data loaded</p>
+  </div>
+</div>
