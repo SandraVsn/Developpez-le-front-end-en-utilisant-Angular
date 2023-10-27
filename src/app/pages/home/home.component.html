@@ -10,13 +10,25 @@
     <div class="flex">
       <div class="info-card">
         <p class="info-title">Number of JOs</p>
-        <p class="font-bold">{{ numberOfCountries }}</p>
+        <p class="font-bold">{{ numberOfJOs }}</p>
       </div>
       <div class="info-card">
         <p class="info-title">Number of Countries</p>
         <p class="font-bold">{{ numberOfCountries }}</p>
       </div>
     </div>
-    <p>{{ (olympics$ | async)?.length }} data loaded</p>
+
+    <div
+      *ngIf="(olympics$ | async)?.length"
+      class="card flex justify-content-center"
+    >
+      <p-chart
+        class="pb-24 p-10 w-[25rem] lg:w-[40rem] sm:w-[50rem]"
+        type="pie"
+        [data]="data"
+        [options]="options"
+        (onDataSelect)="selectData($event)"
+      ></p-chart>
+    </div>
   </div>
 </div>
