@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, switchMap, tap } from 'rxjs';
-import { ChartData } from 'src/app/core/models/ChartData';
+import { PieChartData } from 'src/app/core/models/ChartData';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public olympics$!: Observable<Olympic[] | undefined>;
   public numberOfCountries!: number;
   public numberOfJOs!: number;
-  public data!: ChartData;
+  public data!: PieChartData;
   public options!: any;
 
   constructor(private olympicService: OlympicService, private router: Router) {}
