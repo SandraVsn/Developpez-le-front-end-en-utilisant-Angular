@@ -17,12 +17,6 @@ export class DetailsComponent implements OnInit {
   totalNumberAthletes!: number;
   data!: LineChartData;
   options!: any;
-  documentStyle = getComputedStyle(document.documentElement);
-  textColor = this.documentStyle.getPropertyValue('--text-color');
-  textColorSecondary = this.documentStyle.getPropertyValue(
-    '--text-color-secondary'
-  );
-  surfaceBorder = this.documentStyle.getPropertyValue('--surface-border');
 
   constructor(
     private olympicService: OlympicService,
@@ -31,13 +25,13 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const documentStyle = getComputedStyle(document.documentElement);
     const country = this.route.snapshot.params['country'];
-    console.log('country', country);
     this.detail$ = this.olympicService.getOlympicByCountry(country).pipe(
       tap((value) => {
         if (value !== undefined) {
-          this.totalNumberAthletes = this.getAthletesTotal(value);
-          this.totalNumberMedals = this.getMedalsTotal(value);
+          this.totalNumberAthletes = this.getTotal(value, 'athlete');
+          this.totalNumberMedals = this.getTotal(value, 'medals');
           this.data = {
             labels: value.participations.map((participation) =>
               participation.year.toString()
@@ -49,7 +43,7 @@ export class DetailsComponent implements OnInit {
                   (participation) => participation.medalsCount
                 ),
                 fill: false,
-                borderColor: this.documentStyle.getPropertyValue('--teal-500'),
+                borderColor: documentStyle.getPropertyValue('--teal-500'),
                 tension: 0.4,
               },
             ],
@@ -64,50 +58,19 @@ export class DetailsComponent implements OnInit {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
       plugins: {
-        legend: {
-          labels: {
-            color: this.textColor,
-          },
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: this.textColorSecondary,
-          },
-          grid: {
-            color: this.surfaceBorder,
-            drawBorder: false,
-          },
-        },
-        y: {
-          ticks: {
-            color: this.textColorSecondary,
-          },
-          grid: {
-            color: this.surfaceBorder,
-            drawBorder: false,
-          },
-        },
+        legend: false,
       },
     };
-    console.log(this.detail$);
   }
 
-  getMedalsTotal(olympic: Olympic) {
+  getTotal(olympic: Olympic, type: 'medals' | 'athlete') {
     let totalMedals = 0;
     for (const participation of olympic.participations) {
-      totalMedals += participation.medalsCount;
+      totalMedals +=
+        type === 'medals'
+          ? participation.medalsCount
+          : participation.athleteCount;
     }
     return totalMedals;
-  }
-
-  getAthletesTotal(olympic: Olympic) {
-    let totalAthletes = 0;
-    for (const participation of olympic.participations) {
-      totalAthletes += participation.athleteCount;
-    }
-
-    return totalAthletes;
   }
 }
