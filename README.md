@@ -28,7 +28,8 @@ You're now ready to implement the requested features.
 
 Good luck!
 
-
-ngx-charts deprecated -> Last publish 7 years ago
-ng-chartist -> Last publish 2 months ago, 8 750 weekly downloads, doc could be better
-ng2-charts -> Last publish 2 months ago, 217 395 weekkly downloads, good doc & stackblitz starting templates (CHOICE)
+## How to use the app
+The home page hows you the total of medals from each country. 
+If you click on one Country you will see the details of the medals won for each participation
+If a country is not found you will be redirected to a 'not-found' page 
+If an error occured during data fetching you will be redirected to an 'error' page
