@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { ChartModule } from 'primeng/chart';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ChartModule } from 'primeng/chart';
     HomeComponent,
     NotFoundComponent,
     DetailsComponent,
+    ErrorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartModule],
   providers: [],
