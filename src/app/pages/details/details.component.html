@@ -1,1 +1,40 @@
-<p>details works!</p>
+<h2
+  class="border-b-2 p-3 text-2xl border-teal-600 mb-4 sm:text-4xl sm:border-b-4 font-light"
+>
+  Olympic games app
+</h2>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
+  <div class="mx-auto max-w-3xl flex flex-col items-center">
+    <div class="title-card">{{ (detail$ | async)?.country }}</div>
+    <div class="flex">
+      <div class="info-card">
+        <p class="info-title">Number of Entries</p>
+        <p class="font-bold">{{ (detail$ | async)?.participations?.length }}</p>
+      </div>
+      <div class="info-card">
+        <p class="info-title">Total number medals</p>
+        <p class="font-bold">{{ totalNumberMedals }}</p>
+      </div>
+      <div class="info-card">
+        <p class="info-title">Total number of Athletes</p>
+        <p class="font-bold">{{ totalNumberAthletes }}</p>
+      </div>
+    </div>
+
+    <div class="card flex flex-col items-center justify-center mb-10">
+      <p-chart
+        class="p-10 w-[25rem] lg:w-[40rem] sm:w-[50rem]"
+        type="line"
+        [data]="data"
+        [options]="options"
+      ></p-chart>
+      <a
+        href="#"
+        class="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+        routerLink=""
+        >Go back home</a
+      >
+    </div>
+  </div>
+</div>
