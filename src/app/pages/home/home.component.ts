@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { PieChartData } from 'src/app/core/models/ChartData';
@@ -19,7 +19,11 @@ export class HomeComponent implements OnInit {
   public data!: PieChartData;
   public options!: any;
 
-  constructor(private olympicService: OlympicService, private router: Router) {}
+  constructor(
+    private olympicService: OlympicService,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.options = {
@@ -60,6 +64,7 @@ export class HomeComponent implements OnInit {
         }
       })
     );
+    this.cd.detectChanges();
   }
 
   getMedalsTotal(olympic: Olympic) {
