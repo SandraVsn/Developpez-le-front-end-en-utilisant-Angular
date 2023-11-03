@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
       tap((value) => {
         if (value) {
           this.numberOfCountries = value.length;
-          // TODO : is this the right info ????
           this.numberOfJOs = value[0].participations.length;
           this.data = {
             labels: value.map((olympic) => olympic.country),
